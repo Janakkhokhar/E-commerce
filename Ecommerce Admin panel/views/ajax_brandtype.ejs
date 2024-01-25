@@ -1,0 +1,27 @@
+<div class="row mb-3">
+    <label for="select" class="col-sm-2 col-form-label">Brand Name</label>
+    <div class="col-sm-10">
+        <select name="brand_name" id="brandcategoryId" onchange="return gettypecategoryData()" class="form-control">
+            <option value="">-- Brand Category -- </option>
+            <%for(var bd of brandRecord){%>
+                <option value="<%=bd.id%>">
+                    <%= bd.brand_name %>
+                </option>
+                <%}%>
+        </select>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <label for="select" class="col-sm-2 col-form-label">Type Name</label>
+    <div class="col-sm-10">
+        <select name="type_name" id="typecategoryId" class="form-control">
+            <option value="">-- Type Category -- </option>
+            <%for(var td of typeRecord){%>
+                <option value="<%=td.id%>">
+                    <%= td.type_name %>
+                </option>
+                <%}%>
+        </select>
+    </div>
+</div>

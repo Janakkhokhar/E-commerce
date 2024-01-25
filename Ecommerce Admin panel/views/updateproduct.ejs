@@ -1,0 +1,219 @@
+<%-include('header')%>
+
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Product Form</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Forms</li>
+                    <li class="breadcrumb-item active">Product Elements</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Form Elements</h5>
+
+                            <!-- General Form Elements -->
+                            <form method="post" action="/admin/product/Editproduct" enctype="multipart/form-data">
+                                <input type="hidden" name="EditId" value="<%=ProductUpdateRecord.id%>">
+                                <div class="row mb-3">
+                                    <label for="select" class="col-sm-2 col-form-label">Product Category</label>
+                                    <div class="col-sm-10">
+                                        <select name="category_name" id="categoryId"
+                                            onchange="return getsubcategoryData()" class="form-control">
+                                            <option value="">-- Product Category -- </option>
+
+                                                <%cate.map((v,i)=>{%>
+                                                <option value="<%=v.id%>" <%if (ProductUpdateRecord.category_name == v.category_name){%> <%='selected'%> <%}%>><%=v.category_name%></option>
+
+                                                <%})%>        
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="select" class="col-sm-2 col-form-label">Product SubCategory</label>
+                                    <div class="col-sm-10">
+                                        <select name="extra_subcate_name" id="subcategoryId"
+                                            onchange="return getextracategoryData()" class="form-control">
+                                            <option value="">-- Product SubCategory -- </option>
+                                    
+                                            <%subcat.map((v,i)=>{%>
+                                                <option value="<%=v.id%>" <% if (ProductUpdateRecord.extra_subcate_name==v.subcate_name){%> <%='selected'%> <%}%>><%=v.subcate_name%></option>
+
+                                                <%})%> 
+                                             
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="select" class="col-sm-2 col-form-label">Product ExtraCategory</label>
+                                    <div class="col-sm-10">
+                                        <select name="extra_name" id="extracategoryId"
+                                            onchange="return getbrandcategoryData()" class="form-control">
+                                            <option value="">-- Product ExtraCategory -- </option>
+                                           
+                                            <%extra.map((v,i)=>{%>
+                                                <option value="<%=v.id%>" <% if (ProductUpdateRecord.extra_name==v.extra_name){%> <%='selected'%> <%}%>><%=v.extra_name%></option>
+
+                                                <%})%> 
+                                              
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div id="brandType">
+                                    <div class="row mb-3">
+                                        <label for="select" class="col-sm-2 col-form-label">Brand Name</label>
+                                        <div class="col-sm-10">
+                                            <select name="brand_name" id="brandcategoryId"
+                                                onchange="return gettypecategoryData()" class="form-control">
+                                                <option value="">-- Brand Category -- </option>
+                                           
+                                                <%brand.map((v,i)=>{%>
+                                                    <option value="<%=v.id%>" <% if (ProductUpdateRecord.brand_name==v.brand_name){%> <%='selected'%> <%}%>><%=v.brand_name%></option>
+    
+                                                    <%})%> 
+                                                 
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="select" class="col-sm-2 col-form-label">Type Name</label>
+                                        <div class="col-sm-10">
+                                            <select name="type_name" id="typecategoryId" class="form-control">
+                                                <option value="">-- Type Category -- </option>
+                                           
+                                                <%type.map((v,i)=>{%>
+                                                    <option value="<%=v.id%>" <% if (ProductUpdateRecord.type_name==v.type_name){%> <%='selected'%> <%}%>><%=v.type_name%></option>
+    
+                                                    <%})%> 
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label ">Product Title</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="title"
+                                            placeholder="Product Title" value="<%=ProductUpdateRecord.title%>">
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label for="select" class="col-sm-2 col-form-label">Product Price</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="price"
+                                            placeholder="Product Price" value="<%=ProductUpdateRecord.price%>">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="select" class="col-sm-2 col-form-label">Product Old Price</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="oldprice"
+                                            placeholder="Product Old Price" value="<%=ProductUpdateRecord.oldprice%>">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Select Color</label>
+                                    <div class="col-sm-10">
+                                        <label for="inline-checkbox1" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox1" name="color" value="black"
+                                                class="form-check-input me-2" <% if(ProductUpdateRecord.color=='black'){%><%= 'checked'%><%}%>>Black
+                                        </label>
+                                        <label for="inline-checkbox2" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox2" name="color" value="white"
+                                                class="form-check-input mx-2" <% if(ProductUpdateRecord.color=='white'){%><%= 'checked' %><%}%>>White
+                                        </label>
+                                        <label for="inline-checkbox3" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox3" name="color" value="blue"
+                                                class="form-check-input mx-2" <% if(ProductUpdateRecord.color=='blue'){%><%= 'checked'%><%}%>>Blue
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Select Size</label>
+                                    <div class="col-sm-10">
+                                        <label for="inline-checkbox1" class="form-check-label">
+                                            <input type="checkbox" id="inline-checkbox1" name="size" value="small"
+                                                class="form-check-input me-1" <% if(ProductUpdateRecord.size=='small'){%><%= 'checked'%><%}%>>Small
+                                        </label>
+                                        <label for="inline-checkbox2" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox2" name="size" value="medium"
+                                                class="form-check-input mx-2" <% if(ProductUpdateRecord.size=='medium'){%><%= 'checked'%><%}%>>medium
+                                        </label>
+                                        <label for="inline-checkbox3" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox3" name="size" value="large"
+                                                class="form-check-input mx-2" <% if(ProductUpdateRecord.size=='large'){%><%= 'checked'%><%}%>>large
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="description" id="textarea-input" rows="3"
+                                            placeholder="Content..." class="form-control"><%=ProductUpdateRecord.description%></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputNumber" class="col-sm-2 col-form-label"> Upload Image</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="Product_single_image">
+                                        <img src="<%=ProductUpdateRecord.Product_single_image%>" alt="" height="50">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputNumber" class="col-sm-2 col-form-label"> Upload Multipal
+                                        Image</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="Product_multi_image" multiple>
+                                        <%for(var i = 0; i<ProductUpdateRecord.Product_multi_image; i++){%>
+                                            <img src="<%=ProductUpdateRecord.Product_multi_image[i]%>" alt="" height="50">
+                                        <%}%>    
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary btn-sm"> Edit
+                                        </button>
+                                        <button type="reset" class="btn btn-danger btn-sm"> Reset
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form><!-- End General Form Elements -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+    <%-include('footer')%>

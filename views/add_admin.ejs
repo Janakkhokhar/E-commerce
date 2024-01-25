@@ -1,0 +1,137 @@
+<%-include('header')%>
+
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Form Elements</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Forms</li>
+                    <li class="breadcrumb-item active">Elements</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">General Form Elements</h5>
+
+                            <!-- General Form Elements -->
+                            <form method="post" action="/admin/AdminDetails" enctype="multipart/form-data">
+
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label ">Enter Your Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="name"
+                                            placeholder="Enter Your Name">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Enter Your Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" name="email"
+                                            placeholder="Enter Your Email">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Enter Your
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="Enter Your Password">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="description" id="textarea-input" rows="3"
+                                            placeholder="Content..." class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Select Gender</label>
+                                    <div class="col-sm-10">
+                                        <label for="inline-radio1" class="form-check-label ">
+                                            <input type="radio" id="inline-radio1" name="gender" value="male"
+                                                class="form-check-input">Male
+                                        </label>
+                                        <label for="inline-radio2" class="form-check-label ">
+                                            <input type="radio" id="inline-radio2" name="gender" value="female"
+                                                class="form-check-input">Female
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Select Hobby</label>
+                                    <div class="col-sm-10">
+                                        <label for="inline-checkbox1" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox1" name="hobby" value="reading"
+                                                class="form-check-input">Reading
+                                        </label>
+                                        <label for="inline-checkbox2" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox2" name="hobby" value="music"
+                                                class="form-check-input">Music
+                                        </label>
+                                        <label for="inline-checkbox3" class="form-check-label ">
+                                            <input type="checkbox" id="inline-checkbox3" name="hobby" value="travel"
+                                                class="form-check-input">Travel
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <% let city=["surat","rajkot","bhruch","navasri"]%>
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-2 col-form-label">Select City</label>
+                                        <div class="col-sm-10">
+                                            <select name="city" id="select" class="form-control">
+                                                <option value="">-- Select City -- </option>
+                                                <% city.map((v)=>{ %>
+                                                    <option value="<%= v %>">
+                                                        <%= v %>
+                                                    </option>
+                                                    <%});%>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputNumber" class="col-sm-2 col-form-label"> Upload Image</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="file" name="AdminImage">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary btn-sm"> Submit
+                                            </button>
+                                            <button type="reset" class="btn btn-danger btn-sm"> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+
+                            </form><!-- End General Form Elements -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+    <%-include('footer')%>
